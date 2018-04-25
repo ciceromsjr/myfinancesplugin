@@ -1,3 +1,4 @@
+[![Release](https://img.shields.io/github/release/current_release.svg?style=flat)](https://jitpack.io/#ciceromsjr/myfinancesplugin)  
 [![API](https://img.shields.io/badge/API-15%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=15)
 
 # My Finances Official Plugin
