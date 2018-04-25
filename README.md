@@ -35,6 +35,40 @@ dependencies {
 	
 **2. clone whole repository** (not recommended)
 
+Adding Transactions
+-----
+
+You can add three transaction types:
+
+- Income
+- Expense
+- Transfer
+
+All dependecies such as category/subcategory and credi card are searched by description.
+I means that if a dependendy is not found you will get an error.
+
+**Add an Income**
+
+```
+IncomeTransaction income = new IncomeTransaction();
+income.setDescription("Sale Bonus");
+income.setAmount(50d);
+income.setConfirmationDate(new Date());
+income.setCreationDate(new Date());
+income.setDueDate(new Date());
+income.setAccount("My Account");
+income.setCategory("Sales");
+income.setSubcategory("Others");
+income.setRecurrence(Transaction.TransactionRecurrence.NONE);
+
+new TransactionSender.Builder(this)
+                    .notification(true)
+                    .transaction(income)
+                    .build()
+                    .send();
+
+```
+
 License
 =======
 Copyright 2018 Cícero Moura
