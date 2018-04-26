@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
             switch (spinnerRecurrence.getSelectedItemPosition()) {
                 case 1:
                     transaction.setRecurrence(Transaction.TransactionRecurrence.INSTALLMENTS);
-                    transaction.setInstallments(Integer.parseInt(txtInstallments.getText().toString()));
+                    transaction.setInstallmentsCount(Integer.parseInt(txtInstallments.getText().toString()));
                     break;
                 case 2:
                     transaction.setRecurrence(Transaction.TransactionRecurrence.RECURRING);
@@ -192,9 +192,8 @@ public class MainActivity extends AppCompatActivity {
 
             new TransactionSender.Builder(this)
                     .notification(true)
-                    //it only makes sense to cicero
-                    .debug(true)
                     .transaction(transaction)
+                    .createDependeciesIfNeeded(true)
                     .resultReceiver(MfResultBroadcastReceiver.class)
                     .build()
                     .send();

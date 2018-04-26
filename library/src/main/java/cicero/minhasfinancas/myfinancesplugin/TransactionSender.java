@@ -21,8 +21,8 @@ import cicero.minhasfinancas.myfinancesplugin.model.Transaction;
 public final class TransactionSender {
 
     private Context context;
+    private boolean createDependenciesIfNeeded;
     private boolean notification;
-    private boolean debug;
     private ArrayList<Transaction> transactions;
     private Class<?> resultReceiver;
 
@@ -30,11 +30,11 @@ public final class TransactionSender {
         this(context, null, transactions, false, false);
     }
 
-    public TransactionSender(Context context, Class<?> resultReceiver, ArrayList<Transaction> transactions, boolean notification) {
-        this(context, resultReceiver, transactions, notification, false);
+    public TransactionSender(Context context, ArrayList<Transaction> transactions, boolean createDependenciesIfNeeded) {
+        this(context, null, transactions, createDependenciesIfNeeded, false);
     }
 
-    public TransactionSender(Context context, Class<?> resultReceiver, ArrayList<Transaction> transactions, boolean notification, boolean debug) {
+    public TransactionSender(Context context, Class<?> resultReceiver, ArrayList<Transaction> transactions, boolean createDependenciesIfNeeded, boolean notification) {
 
         if (context == null) {
             throw new RuntimeException("Context cannot be null.");
@@ -51,9 +51,9 @@ public final class TransactionSender {
 
         this.context = context;
         this.resultReceiver = resultReceiver;
+        this.createDependenciesIfNeeded = createDependenciesIfNeeded;
         this.notification = notification;
         this.transactions = transactions;
-        this.debug = debug;
     }
 
     public void send() {
@@ -79,21 +79,22 @@ public final class TransactionSender {
         } else {
             intent.putExtra("result_receiver", "");
         }
-        intent.setComponent(new ComponentName("cicero.minhasfinancas" + (debug ? ".debug" : ""), "cicero.minhasfinancas.broadcast.AddTransactionMFReceiver"));
+        intent.setComponent(new ComponentName("cicero.minhasfinancas", "cicero.minhasfinancas.broadcast.AddTransactionMFReceiver"));
         intent.putExtra(keyData, json);
         intent.putExtra("notification", notification);
+        intent.putExtra("createDependenciesIfNeeded", createDependenciesIfNeeded);
 
         //sends the broadcast
         context.sendBroadcast(intent);
     }
 
-    public static class Builder {
+    public final static class Builder {
 
         private Context context;
         private Class<?> resultReceiver;
         private ArrayList<Transaction> transactions;
         private boolean notification;
-        private boolean debug;
+        private boolean createDependenciesIfNeeded;
 
         public Builder(Context context) {
             this.context = context;
@@ -132,14 +133,6 @@ public final class TransactionSender {
         }
 
         /**
-         * Used by Cicero only because My Finances package changes in debug
-         */
-        public Builder debug(boolean debug) {
-            this.debug = debug;
-            return this;
-        }
-
-        /**
          * If you would like to see a notification when a transaction is added
          * It works only for single expense or income
          */
@@ -148,8 +141,17 @@ public final class TransactionSender {
             return this;
         }
 
+        /**
+         * It means that if dependencies such as account, category/subcategory, and credit card
+         * are not found, My Finances will create it.
+         */
+        public Builder createDependeciesIfNeeded(boolean createDependenciesIfNeeded) {
+            this.createDependenciesIfNeeded = createDependenciesIfNeeded;
+            return this;
+        }
+
         public TransactionSender build() {
-            return new TransactionSender(context, resultReceiver, transactions, notification, debug);
+            return new TransactionSender(context, resultReceiver, transactions, createDependenciesIfNeeded, notification);
         }
     }
 }

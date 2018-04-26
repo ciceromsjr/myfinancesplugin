@@ -12,7 +12,7 @@ public class Transaction implements Serializable {
 
     private String description;
     private double amount;
-    private int installments;
+    private int installmentsCount;
     private Date dueDate;
     private Date confirmationDate;
     private Date creationDate;
@@ -46,12 +46,12 @@ public class Transaction implements Serializable {
         return this;
     }
 
-    public int getInstallments() {
-        return installments;
+    public int getInstallmentsCount() {
+        return installmentsCount;
     }
 
-    public Transaction setInstallments(int installments) {
-        this.installments = installments;
+    public Transaction setInstallmentsCount(int installmentsCount) {
+        this.installmentsCount = installmentsCount;
         return this;
     }
 
