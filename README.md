@@ -1,4 +1,4 @@
-[![Release](https://github.com/ciceromsjr/myfinancesplugin/blob/master/release/current_release.svg)](https://jitpack.io/#ciceromsjr/myfinancesplugin)  
+[![Release](https://jitpack.io/v/ciceromsjr/myfinancesplugin.svg)](https://jitpack.io/#ciceromsjr/myfinancesplugin)
 [![API](https://img.shields.io/badge/API-15%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=15)
 
 # My Finances Official Plugin
