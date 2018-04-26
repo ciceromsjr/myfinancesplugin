@@ -161,7 +161,7 @@ GETTING THE REQUEST RESULT
 
 You have to register a broadcast receiver on your manifest with the action  ```cicero.minhasfinancas.action.ADD_TRANSACTION_RESULT``` to get the request result.
 
-You can get the result calling ```intent.getStringExtra("result")``` which is a message telling you about your request.
+You can get the result calling ```intent.getStringExtra("result")``` which is a message that tells you about your request.
 
 
 **MyBroadcastReceiver.java**
