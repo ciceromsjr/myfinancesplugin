@@ -164,7 +164,7 @@ new TransactionSender.Builder(this)
 
 ```
 
-**Be careful about how much transactions you send to MF. This process is done using BroadcastReceiver and although it is carried out in background using ```goAsync()```, the time to execute any task inside a BroadcastReceiver is limited and it gets harder in Android Oreo. See the [Android Documentation](https://developer.android.com/reference/android/content/BroadcastReceiver.html#goAsync()) about it.**
+**Be careful about how much transactions you send to MF. This process is done using BroadcastReceiver and although it is carried out in background using ```goAsync()```, the time to execute any task inside a BroadcastReceiver is limited and it gets harder on Android Oreo. See the [Android Documentation](https://developer.android.com/reference/android/content/BroadcastReceiver.html#goAsync()) about it.**
 
 GETTING THE REQUEST RESULT
 -----
