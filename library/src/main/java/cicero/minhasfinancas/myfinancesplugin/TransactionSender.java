@@ -79,6 +79,9 @@ public final class TransactionSender {
         } else {
             intent.putExtra("result_receiver", "");
         }
+
+        //Note: If the package name is cicero.minhasfinancas.debug, change it to cicero.minhasfinancas (just in case I forget to remove .debug)
+
         intent.setComponent(new ComponentName("cicero.minhasfinancas", "cicero.minhasfinancas.broadcast.AddTransactionMFReceiver"));
         intent.putExtra(keyData, json);
         intent.putExtra("notification", notification);

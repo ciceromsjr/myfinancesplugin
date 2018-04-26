@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -33,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     private AppCompatEditText txtCategory;
     private AppCompatEditText txtSubcategory;
     private AppCompatEditText txtAccount;
+    private CheckBox checkCreateDependenciesIfNeeded;
+    private CheckBox checkNotification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         txtCategory = findViewById(R.id.txtCategory);
         txtSubcategory = findViewById(R.id.txtSubcategory);
         txtAccount = findViewById(R.id.txtAccount);
+        checkNotification = findViewById(R.id.checkNotification);
+        checkCreateDependenciesIfNeeded = findViewById(R.id.checkCreateDependenciesIfNeeded);
 
         final View containerInstallments = findViewById(R.id.containerInstallments);
         final View containerCreditCard = findViewById(R.id.containerCreditCarad);
@@ -92,16 +97,19 @@ public class MainActivity extends AppCompatActivity {
                         containerCreditCard.setVisibility(View.GONE);
                         containerTransfer.setVisibility(View.GONE);
                         linearMainTransaction.setVisibility(View.VISIBLE);
+                        checkNotification.setVisibility(View.VISIBLE);
                         break;
                     case 1:
                         containerCreditCard.setVisibility(View.VISIBLE);
                         linearMainTransaction.setVisibility(View.VISIBLE);
+                        checkNotification.setVisibility(View.VISIBLE);
                         containerTransfer.setVisibility(View.GONE);
                         break;
                     case 2:
                         containerCreditCard.setVisibility(View.GONE);
                         containerTransfer.setVisibility(View.VISIBLE);
                         linearMainTransaction.setVisibility(View.GONE);
+                        checkNotification.setVisibility(View.GONE);
                         break;
                 }
             }
@@ -191,9 +199,11 @@ public class MainActivity extends AppCompatActivity {
             }
 
             new TransactionSender.Builder(this)
-                    .notification(true)
                     .transaction(transaction)
-                    .createDependeciesIfNeeded(true)
+                    .createDependeciesIfNeeded(checkCreateDependenciesIfNeeded.isChecked())
+                    .notification(checkNotification.isChecked())
+                    //if you set this property, MF will send the result only for this receiver
+                    //otherwise it will send the result for every registered receiver for the result action
                     .resultReceiver(MfResultBroadcastReceiver.class)
                     .build()
                     .send();
