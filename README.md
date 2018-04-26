@@ -3,7 +3,7 @@
 
 # My Finances Official Plugin
 Plugin for My Finances Official app.
-This plugin makes it possible  to you to develop mecanisms to import transactions to My Finances app.
+This plugin makes it possible  to you to develop mechanisms to import transactions to My Finances app.
 If you are Brazillian, you can develop a special way to import a SMS or bank notification for example.
 
 **It works with My Finances app version 4.4.5 or above.**
