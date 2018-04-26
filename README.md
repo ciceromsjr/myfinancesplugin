@@ -106,6 +106,8 @@ expense.setSubcategory("Shoes");
 expense.setRecurrence(Transaction.TransactionRecurrence.INSTALLMENTS);
 expense.setInstallmentsCount(3); 
 
+//If you want to set a credit card to the expense, the due date MUST be the due date of the credit card invoice
+
 new TransactionSender.Builder(this)
                     .notification(true)
                     .transaction(expense)
