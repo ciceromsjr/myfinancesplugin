@@ -4,10 +4,19 @@
 # My Finances Official Plugin
 Plugin for My Finances Official app
 
+First Of All
+-----
+
+You have to install the My Finances Official app to test this library.
+It is available on Google Play Store.
+
+**Download My Finances**
+
+[![PlayStore](https://play.google.com/intl/en_us/badges/images/badge_new.png)](https://play.google.com/store/apps/details?id=cicero.minhasfinancas)
 
 Features
 -----
-- Add transactions (incomes, expenses and transfers).
+- Add transactions (incomes, expenses and transfers) to the app.
  
 Usage
 -----
