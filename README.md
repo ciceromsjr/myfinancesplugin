@@ -2,7 +2,9 @@
 [![API](https://img.shields.io/badge/API-15%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=15)
 
 # My Finances Official Plugin
-Plugin for My Finances Official app
+Plugin for My Finances Official app.
+This plugin makes it possible  to you to develop mecanisms to import transactions to My Finances app.
+If you are Brazillian, you can develop a special way to import a SMS or bank notification for example.
 
 First Of All
 ------
