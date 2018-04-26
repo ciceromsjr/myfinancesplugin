@@ -5,7 +5,7 @@
 Plugin for My Finances Official app
 
 First Of All
------
+------
 
 You have to install the My Finances Official app to test this library.
 It is available on Google Play Store.
@@ -44,7 +44,7 @@ dependencies {
 	
 **2. clone whole repository** (not recommended)
 
-Adding Transactions
+ADDING TRANSACTIONS
 -----
 
 You can add three transaction types:
@@ -53,10 +53,12 @@ You can add three transaction types:
 - Expense
 - Transfer
 
-All dependecies such as category/subcategory and credi card are searched by description.
+All dependecies such as account, category/subcategory, and credid card are found by description
+(credit cards can also be found by its 4 final digigts registered on the app).
 I means that if a dependendy is not found you will get an error.
+Nevertheless, you can set the ```createDependenciesIfNeeded``` transaction property as true to tell to My Finances to create the transaction dependencies if they are not found.
 
-**Add an Income**
+**ADD AN INCOME**
 
 ```
 IncomeTransaction income = new IncomeTransaction();
@@ -68,13 +70,139 @@ income.setDueDate(new Date());
 income.setAccount("My Account");
 income.setCategory("Sales");
 income.setSubcategory("Others");
-income.setRecurrence(Transaction.TransactionRecurrence.NONE);
+income.setRecurrence(Transaction.TransactionRecurrence.NONE); //default
 
 new TransactionSender.Builder(this)
-                    .notification(true)
+                    .notification(true) //only for incomes and expenses
                     .transaction(income)
                     .build()
                     .send();
+
+```
+
+**ADD AN EXPENSE**
+
+```
+ExpenseTransaction expense = new ExpenseTransaction();
+expense.setDescription("Nike Shoes");
+expense.setAmount(90d);
+expense.setConfirmationDate(new Date());
+expense.setCreationDate(new Date());
+expense.setDueDate(new Date());
+expense.setAccount("My Account");
+expense.setCategory("Chothing");
+expense.setSubcategory("Shoes");
+//it will create three expenses of $30
+//if the due date is old the expense will be marked as paid event if you do not set confirmation date
+expense.setRecurrence(Transaction.TransactionRecurrence.INSTALLMENTS);
+expense.setInstallmentsCount(3); 
+
+new TransactionSender.Builder(this)
+                    .notification(true)
+                    .transaction(expense)
+                    .build()
+                    .send();
+
+```
+
+**ADD A TRANSFER BETWEEN ACCOUNTS**
+
+```
+TransferTransaction transfer = new TransferTransaction();
+transfer.setDescription("Got some money at ATM");
+transfer.setAmount(100d);
+transfer.setConfirmationDate(new Date());
+transfer.setCreationDate(new Date());
+transfer.setDueDate(new Date());
+transfer.setSourceAccount("My Account");
+transfer.setTargetAccount("My Wallet");
+
+new TransactionSender.Builder(this)
+                    .transaction(transfer)
+                    .build()
+                    .send();
+
+```
+
+**ADD MULTIPLE TRANSACTIONS**
+
+You can aslo add as much transactions as you want to.
+
+```
+
+new TransactionSender.Builder(this)
+                    .transactions(income, expense, transfer)
+                    .build()
+                    .send();
+
+```
+
+or
+
+```
+
+ArrayList<Transaction> transactions = new ArrayList<>();
+transactions.add(income);
+transactions.add(expense);
+transactions.add(transfer);
+
+new TransactionSender.Builder(this)
+                    .transactions(transactions)
+                    .build()
+                    .send();
+
+```
+
+GETTING THE REQUEST RESULT
+-----
+
+You have to register a broadcast receiver on your manifest with the action  ```cicero.minhasfinancas.action.ADD_TRANSACTION_RESULT``` to get the request result.
+
+You can get the result calling ```intent.getStringExtra("result")``` which is a message telling you about your request.
+
+
+**MyBroadcastReceiver.java**
+
+```
+
+public class MyBroadcastReceiver extends BroadcastReceiver {
+
+    public static final String ADD_TRANSACTION_RESULT = "cicero.minhasfinancas.action.ADD_TRANSACTION_RESULT";
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+
+        if (intent.getAction() != null && intent.getAction().equals(ADD_TRANSACTION_RESULT)) {
+            
+	    String result = intent.getStringExtra("result");
+            
+	    //do something (log, toast, etc.)
+	    Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+        }
+    }
+}
+
+```
+
+
+**AndroidManifest.xml**
+
+```
+
+<application ...>
+	
+	...
+	
+       <receiver
+            android:name=".MyBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="cicero.minhasfinancas.action.ADD_TRANSACTION_RESULT" />
+            </intent-filter>
+        </receiver>
+
+</application>
 
 ```
 
