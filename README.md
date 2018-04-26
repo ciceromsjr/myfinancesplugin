@@ -61,11 +61,11 @@ You can add three transaction types:
 - Expense
 - Transfer
 
-All dependecies such as account, category/subcategory, and credid card are found by description
-(credit cards can also be found by its 4 final digits registered on MY Finances app).
+All dependecies such as account, category/subcategory, and credit card are found by description
+(credit cards can also be found by its 4 final digits registered on MF app).
 It means that if a dependency is not found you will get an error.
-Nevertheless, you can set the ```createDependenciesIfNeeded``` transaction property as true tells My Finances to create the transaction dependencies if they are not found.  
-**It does not work for credit cards because credit cards needs more information to be created. You must do it on the My Finances app**
+Nevertheless, you can set the ```createDependenciesIfNeeded``` transaction property as true to tell MF app to create the transaction dependencies if they are not found.  
+**It does not work for credit cards because credit cards need more information to be created. You must do it on the MF app or tell the user to do it**
 
 **ADDING AN INCOME**
 
