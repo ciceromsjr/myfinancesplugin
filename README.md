@@ -54,11 +54,11 @@ You can add three transaction types:
 - Transfer
 
 All dependecies such as account, category/subcategory, and credid card are found by description
-(credit cards can also be found by its 4 final digigts registered on the app).
-I means that if a dependendy is not found you will get an error.
+(credit cards can also be found by its 4 final digits registered on MY Finances app).
+It means that if a dependency is not found you will get an error.
 Nevertheless, you can set the ```createDependenciesIfNeeded``` transaction property as true to tell to My Finances to create the transaction dependencies if they are not found.
 
-**ADD AN INCOME**
+**ADDING AN INCOME**
 
 ```
 IncomeTransaction income = new IncomeTransaction();
@@ -80,7 +80,7 @@ new TransactionSender.Builder(this)
 
 ```
 
-**ADD AN EXPENSE**
+**ADDING AN EXPENSE**
 
 ```
 ExpenseTransaction expense = new ExpenseTransaction();
@@ -105,7 +105,7 @@ new TransactionSender.Builder(this)
 
 ```
 
-**ADD A TRANSFER BETWEEN ACCOUNTS**
+**ADDING A TRANSFER BETWEEN ACCOUNTS**
 
 ```
 TransferTransaction transfer = new TransferTransaction();
@@ -124,9 +124,9 @@ new TransactionSender.Builder(this)
 
 ```
 
-**ADD MULTIPLE TRANSACTIONS**
+**ADDING MULTIPLE TRANSACTIONS**
 
-You can aslo add as much transactions as you want to.
+You can also add as much transactions as you want to.
 
 ```
 
