@@ -6,6 +6,8 @@ Plugin for My Finances Official app.
 This plugin makes it possible  to you to develop mecanisms to import transactions to My Finances app.
 If you are Brazillian, you can develop a special way to import a SMS or bank notification for example.
 
+**It works with My Finances app version 4.4.5 or above.**
+
 First Of All
 ------
 
@@ -15,6 +17,9 @@ It is available on Google Play Store.
 **Download My Finances**
 
 [![PlayStore](https://play.google.com/intl/en_us/badges/images/badge_new.png)](https://play.google.com/store/apps/details?id=cicero.minhasfinancas)
+
+**1. Install My Finances Offcial app**
+**2. Go to Settings > Security > Enable MF Plugin **
 
 Features
 -----
