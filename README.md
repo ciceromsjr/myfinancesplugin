@@ -219,6 +219,8 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 
 ```
 
+**In addition, you can donwload the project to see it all working with the sample app. Try it out!**
+
 License
 =======
 Copyright 2018 Cícero Moura
