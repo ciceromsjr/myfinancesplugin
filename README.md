@@ -18,8 +18,9 @@ It is available on Google Play Store.
 
 [![PlayStore](https://play.google.com/intl/en_us/badges/images/badge_new.png)](https://play.google.com/store/apps/details?id=cicero.minhasfinancas)
 
-**1. Install My Finances Offcial app**
-**2. Go to Settings > Security > Enable MF Plugin **
+**1. Install [My Finances Offcial](https://play.google.com/store/apps/details?id=cicero.minhasfinancas) app**
+
+**2. Go to Settings > Security > Enable MF Plugin**
 
 Features
 -----
