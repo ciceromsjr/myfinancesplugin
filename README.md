@@ -1,4 +1,4 @@
-[![Release](https://github.com/ciceromsjr/myfinancesplugin/blob/master/release/current_release.svg)](https://jitpack.io/#ciceromsjr/myfinancesplugin)  
+[![Release](https://jitpack.io/v/ciceromsjr/myfinancesplugin.svg)](https://jitpack.io/#ciceromsjr/myfinancesplugin)
 [![API](https://img.shields.io/badge/API-15%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=15)
 
 # My Finances Official Plugin
@@ -38,7 +38,7 @@ allprojects {
  
 ```gradle
 dependencies {
-	implementation 'com.github.ciceromsjr:myfinancesplugin:v0.0.1'
+	implementation 'com.github.ciceromsjr:myfinancesplugin:v0.0.2'
 }
 ```
 	
@@ -56,7 +56,8 @@ You can add three transaction types:
 All dependecies such as account, category/subcategory, and credid card are found by description
 (credit cards can also be found by its 4 final digits registered on MY Finances app).
 It means that if a dependency is not found you will get an error.
-Nevertheless, you can set the ```createDependenciesIfNeeded``` transaction property as true to tell to My Finances to create the transaction dependencies if they are not found.
+Nevertheless, you can set the ```createDependenciesIfNeeded``` transaction property as true tells My Finances to create the transaction dependencies if they are not found.  
+**It does not work for credit cards because credit cards needs more information to be created. You must do it on the My Finances app**
 
 **ADDING AN INCOME**
 
@@ -153,12 +154,14 @@ new TransactionSender.Builder(this)
 
 ```
 
+**Be careful about how much transactions you send to MF. This process is done using BroadcastReceiver and although it is carried out in background using ```goAsync()```, the time to execute any task inside a BroadcastReceiver is limited and it gets harder in Android Oreo. See the [Android Documentation](https://developer.android.com/reference/android/content/BroadcastReceiver.html#goAsync()) about it.**
+
 GETTING THE REQUEST RESULT
 -----
 
 You have to register a broadcast receiver on your manifest with the action  ```cicero.minhasfinancas.action.ADD_TRANSACTION_RESULT``` to get the request result.
 
-You can get the result calling ```intent.getStringExtra("result")``` which is a message telling you about your request.
+You can get the result calling ```intent.getStringExtra("result")``` which is a message that tells you about your request.
 
 
 **MyBroadcastReceiver.java**
