@@ -64,7 +64,7 @@ You can add three transaction types:
 All dependecies such as account, category/subcategory, and credit card are found by description
 (credit cards can also be found by its 4 final digits registered on MF app).
 It means that if a dependency is not found you will get an error.
-Nevertheless, you can set the ```createDependenciesIfNeeded``` transaction property as true to tell MF app to create the transaction dependencies if they are not found.  
+Nevertheless, you can set the ```createDependenciesIfNeeded``` transaction property as ```true``` to tell MF app to create the transaction dependencies if they are not found.  
 **It does not work for credit cards because credit cards need more information to be created. You must do it on the MF app or tell the user to do it**
 
 **ADDING AN INCOME**
@@ -102,7 +102,7 @@ expense.setAccount("My Account");
 expense.setCategory("Chothing");
 expense.setSubcategory("Shoes");
 //it will create three expenses of $30
-//if the due date is old the expense will be marked as paid event if you do not set confirmation date
+//if the due date is old the expense will be marked as paid even if you do not set the confirmation date
 expense.setRecurrence(Transaction.TransactionRecurrence.INSTALLMENTS);
 expense.setInstallmentsCount(3); 
 
