@@ -221,6 +221,11 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 
 **In addition, you can donwload the project to see it all working with the sample app. Try it out!**
 
+Coming Soon
+-----
+
+- Search by Icomes, Expenses, Transfers, Accounts, Credit Cards, Categories in order to you create your own reports.
+
 License
 =======
 Copyright 2018 Cícero Moura
