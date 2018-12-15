@@ -224,7 +224,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 Coming Soon
 -----
 
-- Search by Icomes, Expenses, Transfers, Accounts, Credit Cards, Categories in order to you create your own reports.
+- Search by Icomes, Expenses, Transfers, Accounts, Credit Cards, Categories in order to you to create your own reports.
 
 License
 =======
