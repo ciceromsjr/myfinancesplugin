@@ -16,7 +16,8 @@ public class Transaction implements Serializable {
     private Date dueDate;
     private Date confirmationDate;
     private Date creationDate;
-
+    private String obs;
+    
     // N = None
     // I = Installments
     // R = Recurring
@@ -95,6 +96,14 @@ public class Transaction implements Serializable {
         this.transactionType = transactionType;
     }
 
+    public String getObs() {
+        return obs;
+    }
+
+    public Transaction setObs(String obs) {
+        this.obs = obs;
+        return this;
+    }
     public enum TransactionType implements Serializable {
 
         TRANSFER("T"),
